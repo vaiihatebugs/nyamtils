@@ -1,0 +1,15 @@
+{
+  "nyamtils.config.title": "NyamTils Settings",
+  "nyamtils.config.category.dungeons": "Dungeons",
+  "nyamtils.config.category.qol": "QoL",
+  "nyamtils.config.dungeons.score_hud": "Dungeon Score HUD",
+  "nyamtils.config.dungeons.score_hud.desc": "Show live dungeon score in a corner panel",
+  "nyamtils.config.dungeons.score_titles": "Score Titles",
+  "nyamtils.config.dungeons.score_titles.desc": "Show a title notification when score hits 270 or 300",
+  "nyamtils.config.dungeons.title_270": "270 Title Text",
+  "nyamtils.config.dungeons.subtitle_270": "270 Subtitle Text",
+  "nyamtils.config.dungeons.title_300": "300 Title Text",
+  "nyamtils.config.dungeons.subtitle_300": "300 Subtitle Text",
+  "nyamtils.config.qol.auto_meow": "Auto Meow",
+  "nyamtils.config.qol.auto_meow.desc": "Automatically respond to meow in chat"
+}
