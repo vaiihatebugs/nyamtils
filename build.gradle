@@ -13,11 +13,24 @@ repositories {
     maven { url "https://api.modrinth.com/maven" }
 }
 
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        "nyamtils" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-    implementation "maven.modrinth:yacl:${project.yacl_version}"
+    include(implementation("maven.modrinth:yacl:${project.yacl_version}"))
+    compileOnly "maven.modrinth:modmenu:${project.modmenu_version}"
+    runtimeOnly "maven.modrinth:modmenu:${project.modmenu_version}"
 }
 
 processResources {
@@ -43,3 +56,18 @@ jar {
         rename { "${it}_${project.base.archivesName.get()}" }
     }
 }
+
+// Auto-deploy: after every build, drop the freshly built jar straight into the local
+// Modrinth App test profile's mods folder so it's ready to launch without manual copying.
+def modrinthProfileMods = file("/Users/vaii/Library/Application Support/ModrinthApp/profiles/nya only/mods")
+
+tasks.register("deployToModrinthProfile", Copy) {
+    onlyIf { modrinthProfileMods.isDirectory() }
+    doFirst {
+        fileTree(modrinthProfileMods) { include "${project.archives_base_name}-*.jar" }.each { it.delete() }
+    }
+    from(jar.archiveFile)
+    into(modrinthProfileMods)
+}
+
+build.finalizedBy(tasks.named("deployToModrinthProfile"))

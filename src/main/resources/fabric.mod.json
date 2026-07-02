@@ -11,14 +11,19 @@
   },
   "license": "MIT",
   "environment": "client",
+  "icon": "assets/nyamtils/icon.png",
   "entrypoints": {
-    "client": ["com.nyamtils.NyamTils"]
+    "client": ["com.nyamtils.NyamTils"],
+    "modmenu": ["com.nyamtils.config.ModMenuIntegration"]
   },
   "mixins": ["nyamtils.mixins.json"],
   "depends": {
     "fabricloader": ">=0.15.0",
-    "minecraft": "~26.1",
+    "minecraft": "~26.2",
     "java": ">=21",
     "fabric-api": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
   }
 }
