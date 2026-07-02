@@ -56,8 +56,8 @@ public class ModConfig {
     public int dungeonMapSize = 120;
     public int dungeonMapBgOpacity = 160; // 0-255
     public boolean dungeonMapPlayerHeads = true; // real skins vs simple arrows
-    public boolean dungeonMapRoomNames = true;    // room names on the map
-    public boolean dungeonMapRoomSecrets = false; // per-room secret counts (under the checkmark)
+    public boolean dungeonMapRoomNames = true;
+    public boolean dungeonMapRoomSecrets = false; // shown under the checkmark
     // Extra info under the map (each line toggleable)
     public boolean mapInfoEnabled = true;
     public boolean mapInfoScore = true;

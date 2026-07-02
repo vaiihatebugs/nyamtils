@@ -27,8 +27,6 @@ public interface EditableHud {
     /** Draws a representative preview at (x, y) for the editor. */
     void renderPreview(GuiGraphicsExtractor gui, int x, int y);
 
-    // ── Optional resize support (drag the bottom-right corner, or scroll, in the editor) ──
-
     /** Whether this element can be resized (corner-drag and scroll-wheel) in the editor. */
     default boolean resizable() { return false; }
 

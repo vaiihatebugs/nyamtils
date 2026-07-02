@@ -59,7 +59,7 @@ jar {
 
 // Auto-deploy: after every build, drop the freshly built jar straight into the local
 // Modrinth App test profile's mods folder so it's ready to launch without manual copying.
-def modrinthProfileMods = file("/Users/vaii/Library/Application Support/ModrinthApp/profiles/nya only/mods")
+def modrinthProfileMods = file("${System.getProperty('user.home')}/Library/Application Support/ModrinthApp/profiles/nya only/mods")
 
 tasks.register("deployToModrinthProfile", Copy) {
     onlyIf { modrinthProfileMods.isDirectory() }

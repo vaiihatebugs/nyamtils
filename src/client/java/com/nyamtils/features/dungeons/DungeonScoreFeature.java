@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  */
 public class DungeonScoreFeature implements Feature {
 
-    // ── Patterns from Skyblocker's static initializer ──
+    // Patterns from Skyblocker's static initializer
     private static final Pattern CLEARED_PATTERN         = Pattern.compile("Cleared: (?<cleared>\\d+)%.*");
     private static final Pattern FLOOR_PATTERN           = Pattern.compile(".*?The Catacombs \\((?<floor>[EFM]\\D*\\d*)\\).*");
     private static final Pattern SECRETS_PATTERN         = Pattern.compile(".*Secrets Found: (?<secper>\\d+\\.?\\d*)%.*");
@@ -51,7 +51,7 @@ public class DungeonScoreFeature implements Feature {
         FloorRequirement(int p, int t) { percentage = p; timeLimit = t; }
     }
 
-    // ── Run state ──
+    // Run state
     private static boolean        isMayorPaul            = false;
     private static FloorRequirement floorRequirement     = FloorRequirement.NONE;
     private static String         currentFloor           = "";
@@ -225,8 +225,7 @@ public class DungeonScoreFeature implements Feature {
         isCurrentFloorEntrance = "E".equals(currentFloor);
     }
 
-    // ── Score formulas (exact from Skyblocker) ──
-
+    // Score formulas (exact from Skyblocker)
     private static int calculateSkillScore() {
         int totalRooms = getTotalRooms();
         int roomPart = totalRooms == 0 ? 0
@@ -269,8 +268,7 @@ public class DungeonScoreFeature implements Feature {
         return paulBonus + cryptsBonus + mimicBonus + princeBonus;
     }
 
-    // ── Scoreboard readers (sidebar) ──
-
+    // Scoreboard readers (sidebar)
     private static void setCurrentFloor() {
         for (String line : HypixelUtils.getStringScoreboard()) {
             Matcher m = FLOOR_PATTERN.matcher(line);
@@ -286,8 +284,7 @@ public class DungeonScoreFeature implements Feature {
         return 0;
     }
 
-    // ── Tab-list readers (scan all entries, robust against index drift) ──
-
+    // Tab-list readers (scan all entries, robust against index drift)
     private static int getCompletedRooms() {
         for (String line : tabList) {
             Matcher m = COMPLETED_ROOMS_PATTERN.matcher(line);
@@ -344,8 +341,7 @@ public class DungeonScoreFeature implements Feature {
         return deathCount * 2;
     }
 
-    // ── Chat handlers ──
-
+    // Chat handlers
     private static void checkMessageForDeaths(String text) {
         if (text.length() < 2 || !text.startsWith("☠", 1)) return;
         if (DEATHS_PATTERN.matcher(text).matches()) deathCount++;
@@ -390,7 +386,7 @@ public class DungeonScoreFeature implements Feature {
         return out;
     }
 
-    // ── Public API for HUD ──
+    // Public API for HUD
     public static int  getScore()          { return score; }
     public static int  getCryptsCount()    { return getCrypts(); }
     public static int  getDeaths()         { return deathCount; }

@@ -15,7 +15,7 @@ public final class Ui {
 
     private Ui() {}
 
-    // ── Palette ── theme-aware (set by applyTheme); GREEN/RED are shared across themes.
+    // Palette, theme-aware (set by applyTheme); GREEN/RED are shared across themes.
     public static final int GREEN      = 0xFF52A87C;
     public static final int GREEN_DARK = 0xFF3D8F5F;
     public static final int RED        = 0xFFC2533A;
@@ -102,8 +102,7 @@ public final class Ui {
         return (alpha << 24) | (color & 0xFFFFFF);
     }
 
-    // ── OKLCH → ARGB (so dark-theme tokens can be specified exactly as in the design) ──
-
+    // OKLCH → ARGB (so dark-theme tokens can be specified exactly as in the design)
     public static int oklch(double l, double c, double hDeg) { return oklch(l, c, hDeg, 1.0); }
 
     public static int oklch(double l, double c, double hDeg, double alpha) {
@@ -125,7 +124,7 @@ public final class Ui {
         return (int) Math.round(Math.max(0, Math.min(1, x)) * 255);
     }
 
-    // ── Toggle geometry ──
+    // Toggle geometry
     public static final int TOGGLE_W = 26;
     public static final int TOGGLE_H = 14;
     public static final int KNOB     = 10;
@@ -145,8 +144,7 @@ public final class Ui {
         }
     }
 
-    // ── Rounded rectangles ──
-
+    // Rounded rectangles
     public static void roundedRect(GuiGraphicsExtractor g, int x, int y, int w, int h, int r, int color) {
         roundedRect(g, x, y, w, h, r, r, r, r, color);
     }
@@ -175,8 +173,7 @@ public final class Ui {
         roundedRect(g, x + 1, y + 1, w - 2, h - 2, Math.max(0, r - 1), fill);
     }
 
-    // ── Icon texture ──
-
+    // Icon texture
     private static final net.minecraft.resources.Identifier LOGO_ICON =
         net.minecraft.resources.Identifier.fromNamespaceAndPath("nyamtils", "textures/gui/icon.png");
 
@@ -186,8 +183,7 @@ public final class Ui {
             x, y, 0f, 0f, size, size, 256, 256, 256, 256);
     }
 
-    // ── Toggle slider ──
-
+    // Toggle slider
     /** Draws a pill toggle whose knob/colour is interpolated by {@code progress} (0=off, 1=on). */
     public static void drawToggle(GuiGraphicsExtractor g, int x, int y, float progress) {
         progress = clamp01(progress);
@@ -272,8 +268,7 @@ public final class Ui {
         roundedRect(g, cx - 2, cy - 2, 4, 4, 2, holeColor);
     }
 
-    // ── Text helpers ──
-
+    // Text helpers
     public static String truncate(Font font, String s, int maxW) {
         if (s == null) return "";
         if (font.width(s) <= maxW) return s;
@@ -281,8 +276,7 @@ public final class Ui {
         return font.plainSubstrByWidth(s, Math.max(0, maxW - ell)) + "…";
     }
 
-    // ── Math ──
-
+    // Math
     public static float lerp(float a, float b, float t) { return a + (b - a) * t; }
 
     public static int lerpColor(int a, int b, float t) {

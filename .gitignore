@@ -1,4 +1,4 @@
-# Claude Code session files
+# Local agent/session state
 .claude/
 
 # Gradle

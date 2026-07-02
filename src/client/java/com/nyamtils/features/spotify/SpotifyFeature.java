@@ -107,8 +107,7 @@ public class SpotifyFeature implements Feature {
         if (NyamTils.CONFIG.spotifyAutoAnnounceParty) sendToChannel(Channel.PARTY, msg);
     }
 
-    // ── Chat command parsing (mirrors AutoMeowFeature's channel/sender detection) ──
-
+    // Chat command parsing (mirrors AutoMeowFeature's channel/sender detection)
     private void handleChat(String raw) {
         if (!NyamTils.CONFIG.spotifyEnabled) return;
         if (!HypixelUtils.isOnHypixel()) return;
@@ -163,8 +162,7 @@ public class SpotifyFeature implements Feature {
         EXECUTOR.submit(r);
     }
 
-    // ── Command handlers (run on the background executor) ──
-
+    // Command handlers (run on the background executor)
     private void cmdPlaying(Reply reply) {
         try {
             SpotifyApi.PlaybackState p = SpotifyApi.currentlyPlaying();

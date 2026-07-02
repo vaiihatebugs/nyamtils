@@ -136,8 +136,7 @@ public class DungeonMapHud implements HudElement, EditableHud {
         return "D";
     }
 
-    // ── Normal dungeon map ──
-
+    // Normal dungeon map
     /** Renders the map as a stable square; returns {width, height} (always size × size). */
     private int[] drawMap(GuiGraphicsExtractor gui, int ox, int oy, int size, DungeonMapState state, Minecraft mc) {
         int pad = 3;
@@ -315,7 +314,6 @@ public class DungeonMapHud implements HudElement, EditableHud {
         if (tex != null) blitTex(gui, tex, cx - mark / 2, cy - mark / 2, mark, mark, 100, 100);
 
         Font font = Minecraft.getInstance().font;
-        // Secret count "(found/total)" under the checkmark (toggleable, off by default).
         if (c.dungeonMapRoomSecrets && room.maxSecrets != null && room.maxSecrets > 0) {
             boolean done = room.checkmark == Checkmark.COMPLETED;
             int cur = done ? room.maxSecrets : room.currentSecrets;
@@ -323,7 +321,6 @@ public class DungeonMapHud implements HudElement, EditableHud {
                 : room.checkmark == Checkmark.FAILED ? 0xFFFF5555 : 0xFFFFFFFF;
             drawScaledText(gui, font, "(" + cur + "/" + room.maxSecrets + ")", cx, cy + mark / 2 + 3, 0.7f, col);
         }
-        // Room name above the checkmark.
         if (c.dungeonMapRoomNames && room.name != null) {
             drawScaledText(gui, font, room.name, cx, cy - mark / 2 - 2, 0.5f, 0xFFE6E6E6);
         }
@@ -340,8 +337,7 @@ public class DungeonMapHud implements HudElement, EditableHud {
         pose.popMatrix();
     }
 
-    // ── Boss map ──
-
+    // Boss map
     private int[] drawBoss(GuiGraphicsExtractor gui, int ox, int oy, int size, BossMapData.BossImage boss, Minecraft mc) {
         boolean info = NyamTils.CONFIG.mapInfoEnabled;
         Ui.roundedRect(gui, ox, oy, size, size, 3, 3, info ? 0 : 3, info ? 0 : 3,
@@ -379,8 +375,7 @@ public class DungeonMapHud implements HudElement, EditableHud {
         return new int[]{size, size};
     }
 
-    // ── Shared drawing ──
-
+    // Shared drawing
     private void background(GuiGraphicsExtractor gui, int ox, int oy, int size) {
         int bg = clampByte(NyamTils.CONFIG.dungeonMapBgOpacity) << 24;
         Ui.roundedRect(gui, ox, oy, size, size, 3, bg);
@@ -617,8 +612,7 @@ public class DungeonMapHud implements HudElement, EditableHud {
 
     private static int clampByte(int v) { return Math.max(0, Math.min(255, v)); }
 
-    // ── EditableHud ──
-
+    // EditableHud
     @Override public String name() { return "Dungeon Map"; }
     @Override public boolean isEnabled() { return NyamTils.CONFIG.showDungeonMap; }
     @Override public int getX(int screenWidth) { return NyamTils.CONFIG.dungeonMapX; }

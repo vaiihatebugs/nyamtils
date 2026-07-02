@@ -30,25 +30,25 @@ public class NyamtilsConfigScreen extends Screen {
 
     private final Screen parent;
 
-    // ── Navigation state (view = ROOT when activeCategory is null, else CATEGORY) ──
+    // Navigation state (view = ROOT when activeCategory is null, else CATEGORY)
     private String activeCategory;
     private String activeFeature;
     private String query = "";
     private float contentScroll;
     private int sidebarScroll;
 
-    // ── Transient (rebuilt in init / on navigation) ──
+    // Transient (rebuilt in init / on navigation)
     private FeatureDef activeDef;
     private FeaturePanel activePanel;
     private EditBox searchBox;
     private EditBox focusedBox;
 
-    // ── Settings popover (gear menu) ──
+    // Settings popover (gear menu)
     private boolean settingsOpen;
     private float darkAnim;
     private boolean openSoundPlayed;
 
-    // ── Per-frame layout / hit caches ──
+    // Per-frame layout / hit caches
     private int panelX, panelY, panelW, panelH, sidebarW, headerBottom, footerTop, contentX;
     private final List<Ui.Hit> sidebarHits = new ArrayList<>();
     private final List<Ui.Hit> footerHits = new ArrayList<>();
@@ -57,7 +57,7 @@ public class NyamtilsConfigScreen extends Screen {
     private int[] gearRect, popoverRect, darkToggleRect;
     private int lastContentHeight, maxContentScroll, maxSidebarScroll;
 
-    // ── Scrollbar drag + animation timing ──
+    // Scrollbar drag + animation timing
     private boolean draggingThumb;
     private int dragOffset;
     private long lastNanos;
@@ -92,8 +92,7 @@ public class NyamtilsConfigScreen extends Screen {
         }
     }
 
-    // ── Rendering ──
-
+    // Rendering
     @Override
     public void extractRenderState(GuiGraphicsExtractor g, int mouseX, int mouseY, float partial) {
         long now = System.nanoTime();
@@ -141,7 +140,6 @@ public class NyamtilsConfigScreen extends Screen {
         Ui.roundedRectBorder(g, cxp, cyp, cw, 18, 5, Ui.PANEL_BG, Ui.BORDER);
         g.text(font, cmd, cxp + 8, cyp + 5, Ui.TEXT_MUTED, false);
 
-        // Settings gear (opens the popover with Dark Mode etc.)
         int gw = 22, gx = cxp - 10 - gw, gy = panelY + (HEADER_H - gw) / 2;
         gearRect = new int[]{gx, gy, gw, gw};
         boolean gHover = settingsOpen || inRect(mouseX, mouseY, gearRect);
@@ -429,8 +427,7 @@ public class NyamtilsConfigScreen extends Screen {
         g.fill(x + 2, y + 2, x + 5, y + 5, Ui.TEXT_SECTION);         // handle
     }
 
-    // ── Input ──
-
+    // Input
     @Override
     public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
         double mx = event.x(), my = event.y();
@@ -527,8 +524,7 @@ public class NyamtilsConfigScreen extends Screen {
         return super.charTyped(event);
     }
 
-    // ── Navigation ──
-
+    // Navigation
     private void openCategory(String catId) {
         Category c = ConfigTree.category(catId);
         if (c == null) return;
@@ -590,8 +586,7 @@ public class NyamtilsConfigScreen extends Screen {
         this.minecraft.setScreenAndShow(parent);
     }
 
-    // ── Focus + helpers ──
-
+    // Focus + helpers
     private void focus(EditBox box) {
         if (focusedBox != null && focusedBox != box) focusedBox.setFocused(false);
         focusedBox = box;

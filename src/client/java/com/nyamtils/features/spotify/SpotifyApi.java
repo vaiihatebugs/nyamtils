@@ -162,8 +162,7 @@ public final class SpotifyApi {
         return new Track(id, "spotify:track:" + id, name, artists.toString(), art, duration);
     }
 
-    // ── HTTP plumbing ──
-
+    // HTTP plumbing
     private static HttpResponse<String> get(String path) throws IOException, InterruptedException, SpotifyApiException {
         return send(HttpRequest.newBuilder(URI.create(BASE + path)).GET());
     }

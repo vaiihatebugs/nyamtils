@@ -78,8 +78,7 @@ public class SpotifyHud implements HudElement, EditableHud {
         if (filled > 0) Ui.roundedRect(gui, tx, barY, filled, 3, 1, 0xFF52A87C);
     }
 
-    // ── EditableHud ──
-
+    // EditableHud
     @Override public String name() { return "Spotify"; }
 
     @Override public boolean isEnabled() {

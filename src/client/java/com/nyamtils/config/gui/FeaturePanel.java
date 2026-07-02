@@ -85,8 +85,7 @@ public abstract class FeaturePanel {
         return y - topY;
     }
 
-    // ── Persistent text field ──
-
+    // Persistent text field
     protected final class Field {
         final EditBox box;
 
@@ -119,8 +118,7 @@ public abstract class FeaturePanel {
         });
     }
 
-    // ── Layout helpers (operate on the current cursor x / w / y) ──
-
+    // Layout helpers (operate on the current cursor x / w / y)
     protected boolean visibleRow(int top, int h) {
         return top + h > viewTop && top < viewBottom;
     }
@@ -225,8 +223,7 @@ public abstract class FeaturePanel {
         return bw;
     }
 
-    // ── Chip tags (wrapping) ──
-
+    // Chip tags (wrapping)
     protected static final int CHIP_H = 14, CHIP_GAP_X = 6, CHIP_GAP_Y = 6;
 
     protected int chipsHeight(List<String> chips, int maxW) {
